@@ -1,6 +1,6 @@
 package com.example.presionplus
 
-import android.R
+
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -10,8 +10,10 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
@@ -23,12 +25,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.presionplus.ui.components.UltimaMedicionCard
 import com.example.presionplus.ui.theme.PresionPlusTheme
 
 class MainActivity : ComponentActivity() {
@@ -111,6 +113,22 @@ fun Greeting(modifier: Modifier = Modifier) {
                 }
 
             }
+        }
+
+        // 🔹 Baja más la card
+        Spacer(modifier = Modifier.height(250.dp))
+
+        // 📊 Componente de última medición centrado
+        Box(
+            modifier = Modifier.fillMaxWidth(),
+            contentAlignment = Alignment.Center
+        ) {
+            UltimaMedicionCard(
+                minima = 80,
+                maxima = 120,
+                pulso = 72,
+                fecha = "09/11/2025 19:30"
+            )
         }
     }
 }
