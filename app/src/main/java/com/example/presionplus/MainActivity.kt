@@ -117,7 +117,7 @@ fun Greeting(modifier: Modifier = Modifier) {
             )
         }
 
-        // 🔹 Espacio para bajarlo visualmente
+
         Spacer(modifier = Modifier.height(450.dp))
 
         // 🔹 Tarjeta de última medición
