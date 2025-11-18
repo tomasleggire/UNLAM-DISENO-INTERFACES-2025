@@ -25,12 +25,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.googlefonts.Font
+import androidx.compose.ui.text.googlefonts.GoogleFont
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.presionplus.ui.components.UltimaMedicionCard
+import com.example.presionplus.ui.screens.WelcomeScreen
 import com.example.presionplus.ui.theme.PresionPlusTheme
 
 class MainActivity : ComponentActivity() {
@@ -39,7 +43,8 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             PresionPlusTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                Scaffold(modifier = Modifier.fillMaxSize())
+                { innerPadding ->
                     Greeting(
                         modifier = Modifier.padding(innerPadding)
                     )
@@ -49,36 +54,71 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+private val provider = GoogleFont.Provider(
+    providerAuthority = "com.google.android.gms.fonts",
+    providerPackage = "com.google.android.gms",
+    certificates = R.array.com_google_android_gms_fonts_certs
+)
+
+private val dmSerifItalic = FontFamily(
+    Font(
+        googleFont = GoogleFont("DM Serif Text Italic"),
+        fontProvider = provider
+    )
+)
+
 @Composable
 fun Greeting(modifier: Modifier = Modifier) {
-    Column (
+    Column(
         modifier = Modifier
             .fillMaxSize()
             .background(Color(0xFF1F2336))
             .padding(horizontal = 18.dp, vertical = 20.dp)
     ) {
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
+
+        // ⭐⭐⭐ HEADER CENTRADO (NUEVO)
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 20.dp)
         ) {
+            // Texto centrado
             Text(
-                text = "Presion+",
-                color = Color.White
+                text = "Presión+",
+                color = Color.White,
+                fontFamily = dmSerifItalic,
+                fontSize = 20.sp,
+                modifier = Modifier.align(Alignment.Center)
             )
+
+            // Icono a la derecha
             Icon(
                 imageVector = Icons.Default.AccountCircle,
                 contentDescription = "Perfil",
                 tint = Color.Gray,
-                modifier = Modifier.size(50.dp)
+                modifier = Modifier
+                    .size(50.dp)
+                    .align(Alignment.CenterEnd)
             )
         }
-        Row (
-            modifier = Modifier.fillMaxWidth().padding(vertical = 18.dp),
+        // ⭐⭐⭐ FIN HEADER
+
+
+        // ⭐ BLOQUE MÍNIMA / MÁXIMA
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 18.dp),
             horizontalArrangement = Arrangement.SpaceAround
-        ){
+        ) {
             Column(modifier = Modifier.weight(1f)) {
-                Text(text = "Mínima", color = Color.White, textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth(), fontWeight = FontWeight.Bold)
+                Text(
+                    text = "Mínima",
+                    color = Color.White,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.fillMaxWidth(),
+                    fontWeight = FontWeight.Bold
+                )
                 Row(
                     modifier.fillMaxWidth().padding(vertical = 5.dp),
                     horizontalArrangement = Arrangement.SpaceAround
@@ -93,16 +133,22 @@ fun Greeting(modifier: Modifier = Modifier) {
                     Text(text = "100", color = Color.White, fontWeight = FontWeight.Bold)
                     Text(text = "100", color = Color.White, fontWeight = FontWeight.Bold)
                 }
-
             }
+
             Column(modifier = Modifier.weight(1f)) {
-                Text(text = "Máxima", color = Color.White, textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth(), fontWeight = FontWeight.Bold)
+                Text(
+                    text = "Máxima",
+                    color = Color.White,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.fillMaxWidth(),
+                    fontWeight = FontWeight.Bold
+                )
                 Row(
                     modifier.fillMaxWidth().padding(vertical = 5.dp),
                     horizontalArrangement = Arrangement.SpaceAround
                 ) {
-                    Text(text = "MIN", color = Color.White,fontSize = 12.sp)
-                    Text(text = "MAX", color = Color.White,fontSize = 12.sp)
+                    Text(text = "MIN", color = Color.White, fontSize = 12.sp)
+                    Text(text = "MAX", color = Color.White, fontSize = 12.sp)
                 }
                 Row(
                     modifier.fillMaxWidth(),
@@ -115,10 +161,10 @@ fun Greeting(modifier: Modifier = Modifier) {
             }
         }
 
-        // 🔹 Baja más la card
+        // 🔹 Espacio para bajar la card
         Spacer(modifier = Modifier.height(250.dp))
 
-        // 📊 Componente de última medición centrado
+        // 📊 Última medición centrada
         Box(
             modifier = Modifier.fillMaxWidth(),
             contentAlignment = Alignment.Center
@@ -133,10 +179,13 @@ fun Greeting(modifier: Modifier = Modifier) {
     }
 }
 
+
+
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
     PresionPlusTheme {
-        Greeting()
+       Greeting()
     }
 }
+
