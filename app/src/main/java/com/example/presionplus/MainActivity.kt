@@ -5,36 +5,16 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccountCircle
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.googlefonts.Font
 import androidx.compose.ui.text.googlefonts.GoogleFont
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import com.example.presionplus.ui.components.UltimaMedicionCard
-import com.example.presionplus.ui.screens.WelcomeScreen
+import com.example.presionplus.ui.screens.DashboardScreen
 import com.example.presionplus.ui.theme.PresionPlusTheme
 
 class MainActivity : ComponentActivity() {
@@ -45,7 +25,7 @@ class MainActivity : ComponentActivity() {
             PresionPlusTheme {
                 Scaffold(modifier = Modifier.fillMaxSize())
                 { innerPadding ->
-                    Greeting(
+                    DashboardScreen(
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
@@ -54,138 +34,25 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-private val provider = GoogleFont.Provider(
+val provider = GoogleFont.Provider(
     providerAuthority = "com.google.android.gms.fonts",
     providerPackage = "com.google.android.gms",
     certificates = R.array.com_google_android_gms_fonts_certs
 )
 
-private val dmSerifItalic = FontFamily(
+val dmSerifItalic = FontFamily(
     Font(
         googleFont = GoogleFont("DM Serif Text Italic"),
         fontProvider = provider
     )
 )
 
-@Composable
-fun Greeting(modifier: Modifier = Modifier) {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Color(0xFF1F2336))
-            .padding(horizontal = 18.dp, vertical = 20.dp)
-    ) {
-
-        // ⭐⭐⭐ HEADER CENTRADO (NUEVO)
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 20.dp)
-        ) {
-            // Texto centrado
-            Text(
-                text = "Presión+",
-                color = Color.White,
-                fontFamily = dmSerifItalic,
-                fontSize = 20.sp,
-                modifier = Modifier.align(Alignment.Center)
-            )
-
-            // Icono a la derecha
-            Icon(
-                imageVector = Icons.Default.AccountCircle,
-                contentDescription = "Perfil",
-                tint = Color.Gray,
-                modifier = Modifier
-                    .size(50.dp)
-                    .align(Alignment.CenterEnd)
-            )
-        }
-        // ⭐⭐⭐ FIN HEADER
-
-
-        // ⭐ BLOQUE MÍNIMA / MÁXIMA
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 18.dp),
-            horizontalArrangement = Arrangement.SpaceAround
-        ) {
-            Column(modifier = Modifier.weight(1f)) {
-                Text(
-                    text = "Mínima",
-                    color = Color.White,
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier.fillMaxWidth(),
-                    fontWeight = FontWeight.Bold
-                )
-                Row(
-                    modifier.fillMaxWidth().padding(vertical = 5.dp),
-                    horizontalArrangement = Arrangement.SpaceAround
-                ) {
-                    Text(text = "MIN", color = Color.White, fontSize = 12.sp)
-                    Text(text = "MAX", color = Color.White, fontSize = 12.sp)
-                }
-                Row(
-                    modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceAround
-                ) {
-                    Text(text = "100", color = Color.White, fontWeight = FontWeight.Bold)
-                    Text(text = "100", color = Color.White, fontWeight = FontWeight.Bold)
-                }
-            }
-
-            Column(modifier = Modifier.weight(1f)) {
-                Text(
-                    text = "Máxima",
-                    color = Color.White,
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier.fillMaxWidth(),
-                    fontWeight = FontWeight.Bold
-                )
-                Row(
-                    modifier.fillMaxWidth().padding(vertical = 5.dp),
-                    horizontalArrangement = Arrangement.SpaceAround
-                ) {
-                    Text(text = "MIN", color = Color.White, fontSize = 12.sp)
-                    Text(text = "MAX", color = Color.White, fontSize = 12.sp)
-                }
-                Row(
-                    modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceAround
-                ) {
-                    Text(text = "75", color = Color.White, fontWeight = FontWeight.Bold)
-                    Text(text = "75", color = Color.White, fontWeight = FontWeight.Bold)
-                }
-
-            }
-        }
-
-        // 🔹 Espacio para bajar la card
-        Spacer(modifier = Modifier.height(250.dp))
-
-        // 📊 Última medición centrada
-        Box(
-            modifier = Modifier.fillMaxWidth(),
-            contentAlignment = Alignment.Center
-        ) {
-            UltimaMedicionCard(
-                minima = 80,
-                maxima = 120,
-                pulso = 72,
-                fecha = "09/11/2025 19:30"
-            )
-        }
-    }
-}
-
-
 
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
     PresionPlusTheme {
-       Greeting()
+        DashboardScreen()
     }
 }
 

@@ -13,8 +13,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 @Composable
 fun UltimaMedicionCard(
@@ -40,7 +41,7 @@ fun UltimaMedicionCard(
     // 🔹 Estructura visual
     Card(
         modifier = Modifier
-            .width(300.dp)
+            .width(350.dp)
             .height(132.dp)
             .padding(8.dp),
         shape = RoundedCornerShape(12.dp),
@@ -106,6 +107,7 @@ fun UltimaMedicionCard(
                     Text(
                         text = estado,
                         color = Color.White,
+                        fontSize = 25.sp,
                         style = MaterialTheme.typography.titleMedium
                     )
                 }
@@ -129,5 +131,27 @@ fun UltimaMedicionCardPreview() {
         maxima = 135,
         pulso = 75,
         fecha = "09/11/2025 19:45"
+    )
+}
+
+@Preview(showBackground = true, backgroundColor = 0xFF1F2336)
+@Composable
+fun UltimaMedicionCardPreviewNormal() {
+    UltimaMedicionCard(
+        minima = 80,
+        maxima = 120,
+        pulso = 60,
+        fecha = "10/11/2025 08:00"
+    )
+}
+
+@Preview(showBackground = true, backgroundColor = 0xFF1F2336)
+@Composable
+fun UltimaMedicionCardPreviewBaja() {
+    UltimaMedicionCard(
+        minima = 55,
+        maxima = 85,
+        pulso = 55,
+        fecha = "10/11/2025 09:30"
     )
 }
