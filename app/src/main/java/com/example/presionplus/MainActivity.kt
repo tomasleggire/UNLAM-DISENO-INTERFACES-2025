@@ -14,6 +14,8 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.googlefonts.Font
 import androidx.compose.ui.text.googlefonts.GoogleFont
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.rememberNavController
+import com.example.presionplus.navigation.NavigationComponent
 import com.example.presionplus.ui.screens.DashboardScreen
 import com.example.presionplus.ui.theme.PresionPlusTheme
 
@@ -23,12 +25,12 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             PresionPlusTheme {
-                Scaffold(modifier = Modifier.fillMaxSize())
-                { innerPadding ->
-                    DashboardScreen(
+                NavigationComponent()
+//                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                    /*DashboardScreen(
                         modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                    )*/
+//                }
             }
         }
     }
@@ -52,7 +54,10 @@ val dmSerifItalic = FontFamily(
 @Composable
 fun GreetingPreview() {
     PresionPlusTheme {
-        DashboardScreen()
+        DashboardScreen(
+            modifier = Modifier,
+            controller = rememberNavController()
+        )
     }
 }
 

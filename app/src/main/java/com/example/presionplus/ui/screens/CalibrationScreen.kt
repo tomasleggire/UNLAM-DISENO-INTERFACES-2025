@@ -20,12 +20,18 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.presionplus.R
 import com.example.presionplus.ui.components.PrimaryButton
 
 
 @Composable
-fun CalibrationScreen(onContinue: () -> Unit = {}) {
+fun CalibrationScreen(
+    modifier: Modifier = Modifier,
+    controller: NavHostController,
+    onContinue: () -> Unit = {}
+) {
 
     Column(
         modifier = Modifier
@@ -89,5 +95,8 @@ fun CalibrationScreen(onContinue: () -> Unit = {}) {
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun CalibrationScreenPreview() {
-    CalibrationScreen()
+    CalibrationScreen(
+        modifier = Modifier,
+        controller = rememberNavController(),
+    )
 }

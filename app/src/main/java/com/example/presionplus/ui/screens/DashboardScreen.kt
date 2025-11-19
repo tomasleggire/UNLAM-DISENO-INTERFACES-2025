@@ -34,6 +34,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.platform.LocalContext
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.presionplus.dmSerifItalic
 import com.example.presionplus.ui.components.MinMaxInfo
 import com.example.presionplus.ui.components.PrimaryButton
@@ -47,7 +50,11 @@ private const val CHART_TYPE_SEMANA = "SEMANA"
 private const val CHART_TYPE_MES = "MES"
 
 @Composable
-fun DashboardScreen(modifier: Modifier = Modifier.Companion) {
+fun DashboardScreen(
+    modifier: Modifier = Modifier,
+    controller: NavHostController,
+    onRecordaryButtonClicked: () -> Unit = {}
+) {
     // Estado para controlar qué gráfico mostrar ("SEMANA" o "MES")
     var selectedChart by rememberSaveable { mutableStateOf(CHART_TYPE_SEMANA) }
     var showUserSessionModal by rememberSaveable { mutableStateOf(false) }
@@ -154,7 +161,7 @@ fun DashboardScreen(modifier: Modifier = Modifier.Companion) {
 
         Spacer(modifier = Modifier.Companion.height(20.dp))
 
-        PrimaryButton(label = "AJUSTAR RECORDATORIO", onClick = {})
+        PrimaryButton(label = "AJUSTAR RECORDATORIO", onClick = onRecordaryButtonClicked)
 
         Spacer(modifier = Modifier.Companion.height(20.dp))
 
@@ -184,5 +191,8 @@ private fun BlockMinMax(modifier: Modifier) {
 @Preview(showBackground = true)
 @Composable
 fun DashboardScreenPreview() {
-    DashboardScreen()
+    DashboardScreen(
+        modifier = Modifier,
+        controller = rememberNavController()
+    )
 }

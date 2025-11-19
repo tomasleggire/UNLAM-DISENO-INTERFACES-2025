@@ -23,6 +23,8 @@ import androidx.compose.ui.unit.sp
 import com.example.presionplus.R
 
 import androidx.compose.ui.text.googlefonts.GoogleFont
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.presionplus.ui.components.PrimaryButton
 
 
@@ -43,6 +45,8 @@ private val dmSerifItalic = FontFamily(
 
 @Composable
 fun WelcomeScreen(
+    modifier: Modifier = Modifier,
+    controller: NavHostController,
     onIniciarSesionClick: () -> Unit = {},
     onCrearCuentaClick: () -> Unit = {}
 ) {
@@ -97,6 +101,8 @@ fun WelcomeScreen(
 @Composable
 fun WelcomeScreenPreview() {
     WelcomeScreen(
+        modifier = Modifier,
+        controller = rememberNavController(),
         onCrearCuentaClick = {},
         onIniciarSesionClick = {}
     )
