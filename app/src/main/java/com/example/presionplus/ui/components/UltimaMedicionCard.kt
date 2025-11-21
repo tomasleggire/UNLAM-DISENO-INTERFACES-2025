@@ -57,7 +57,11 @@ fun UltimaMedicionCard(
             verticalArrangement = Arrangement.SpaceBetween
         ) {
             // --- Encabezado ---
-            Column {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
                 Text(
                     text = "Última medición",
                     color = Color.White,
@@ -113,12 +117,27 @@ fun UltimaMedicionCard(
                 }
             }
 
-            // --- Pulso ---
-            Text(
-                text = "Pulso: $pulso BPM",
-                color = Color(0xFFC2C2C4),
-                style = MaterialTheme.typography.bodySmall
-            )
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+
+                Text(
+                    text = "Min.                 Max.",
+                    color = Color(0xFFC2C2C4),
+                    style = MaterialTheme.typography.bodySmall
+                )
+
+
+                // --- Pulso ---
+                Text(
+                    text = "Pulso: $pulso BPM",
+                    color = Color(0xFFC2C2C4),
+                    style = MaterialTheme.typography.bodySmall
+                )
+            }
+
         }
     }
 }

@@ -89,7 +89,7 @@ fun StackBarChart() {
             data = { data },
             modifier = Modifier.Companion
                 .fillMaxWidth()
-                .height(300.dp)
+                .height(250.dp)
                 .padding(24.dp),
             stackBarConfig = StackBarConfig.default().copy(
                 showCurvedBar = true

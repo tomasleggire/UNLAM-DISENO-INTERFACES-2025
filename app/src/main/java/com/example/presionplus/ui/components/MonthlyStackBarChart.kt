@@ -136,7 +136,7 @@ fun MonthlyStackBarChart() {
         Column {
             LineStackedBarChart(
                 data = { data },
-                modifier = Modifier.Companion.fillMaxWidth().height(250.dp).padding(24.dp),
+                modifier = Modifier.Companion.fillMaxWidth().height(200.dp).padding(24.dp),
                 stackBarConfig = StackBarConfig.Companion.default().copy(
                     showCurvedBar = true,
                 ),

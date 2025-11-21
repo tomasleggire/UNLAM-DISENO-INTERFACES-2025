@@ -6,5 +6,6 @@ enum class NavHostRouterPaths(
     DASHBOARD("dashboard"),
     WELCOME("welcome"),
     CALIBRATION("calibration"),
+    CALIBRATION_SUCCESS("calibration_success"),
     RECORDARY("recordary")
 }

@@ -10,17 +10,18 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -36,7 +37,7 @@ import com.example.presionplus.ui.components.PrimaryButton
 
 
 @Composable
-fun CalibrationScreen(
+fun CalibrationSuccessScreen(
     modifier: Modifier = Modifier,
     controller: NavHostController,
     onContinue: () -> Unit = {}
@@ -69,20 +70,6 @@ fun CalibrationScreen(
         ) {
 
             Box(contentAlignment = Alignment.Center) {
-                // Background radial gradient
-                val colors = listOf(
-                    Color(0xD9D9D9).copy(alpha = alpha), // Use animated alpha here
-                    Color(0x737373).copy(alpha = 0f)
-                )
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(280.dp)
-                        .background(
-                            brush = Brush.radialGradient(colors = colors)
-                        )
-                )
-                // 🔥 IMAGEN MÁS GRANDE Y MÁS ABAJO
                 Image(
                     painter = painterResource(id = R.drawable.smartband),
                     contentDescription = "Pulsera",
@@ -91,12 +78,31 @@ fun CalibrationScreen(
                         .fillMaxWidth(),
                     contentScale = ContentScale.Fit
                 )
+
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Start
+                ) {
+                    Spacer(
+                        Modifier.width(80.dp)
+                    )
+                    Image(
+                        painter = painterResource(id = R.drawable.tick_success),
+                        contentDescription = "icon success",
+                        modifier = Modifier
+                            .height(80.dp)
+                            .width(80.dp),
+                        contentScale = ContentScale.Fit
+                    )
+                }
+
+
             }
 
             Spacer(modifier = Modifier.height(25.dp))
 
             Text(
-                text = "Medicion automatica",
+                text = "Calibración finalizada!",
                 color = Color.White,
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Bold,
@@ -106,7 +112,8 @@ fun CalibrationScreen(
             Spacer(modifier = Modifier.height(10.dp))
 
             Text(
-                text = "Ajusta la pulsera a tu mano de preferencia y presiona calibrar",
+                text = "Ahora vamos a poder medir \n" +
+                        "la presión con tu pulsera",
                 color = Color.White.copy(alpha = 0.85f),
                 fontSize = 20.sp,
                 textAlign = TextAlign.Center,
@@ -118,7 +125,7 @@ fun CalibrationScreen(
             modifier = Modifier.weight(0.3f),
             verticalArrangement = Arrangement.Bottom
         ) {
-            PrimaryButton(label = "CALIBRAR PULSERA", onClick = onContinue)
+            PrimaryButton(label = "COMENZAR", onClick = onContinue)
 
             Spacer(modifier = Modifier.height(35.dp))
         }
@@ -127,8 +134,8 @@ fun CalibrationScreen(
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
-fun CalibrationScreenPreview() {
-    CalibrationScreen(
+fun CalibrationSuccessScreenPreview() {
+    CalibrationSuccessScreen(
         modifier = Modifier,
         controller = rememberNavController(),
     )

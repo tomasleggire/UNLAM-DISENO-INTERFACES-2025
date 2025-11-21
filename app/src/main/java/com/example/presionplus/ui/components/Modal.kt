@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun UserSessionModal(onDismiss: () -> Unit) {
+fun UserSessionModal(onDismiss: () -> Unit, onCloseSession: () -> Unit) {
     // Main Card Container
     Card(
         shape = RoundedCornerShape(32.dp),
@@ -62,22 +62,13 @@ fun UserSessionModal(onDismiss: () -> Unit) {
                 fontWeight = FontWeight.Normal
             )
 
-            Spacer(modifier = Modifier.height(40.dp))
-
-            // Top Button: "COMPARTIR CON FAMILIAR"
-            // Using a variation of your button with the Maroon/Purple color
-            SecondaryButton(
-                label = "COMPARTIR CON FAMILIAR",
-                onClick = { /* TODO: Handle Share */ }
-            )
-
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(20.dp))
 
             // Bottom Button: "CERRAR SESION"
             // Using the exact code you provided
             PrimaryButton(
                 label = "CERRAR SESION",
-                onClick = { /* TODO: Handle Logout */ }
+                onClick = onCloseSession
             )
         }
 
@@ -86,16 +77,14 @@ fun UserSessionModal(onDismiss: () -> Unit) {
 }
 
 
-
 @Preview(showBackground = true, backgroundColor = 0xFF1F2336)
 @Composable
 fun PreviewModal() {
     Box(
         modifier = Modifier
-            .fillMaxSize()
-            .background(Color.White),
+            .fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
-        UserSessionModal(onDismiss = {})
+        UserSessionModal(onDismiss = {}, onCloseSession = {})
     }
 }

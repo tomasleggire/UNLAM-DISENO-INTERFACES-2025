@@ -33,8 +33,8 @@ fun MinMaxInfo(title: String, minVal: String, maxVal: String, modifier: Modifier
                 .padding(vertical = 5.dp),
             horizontalArrangement = Arrangement.SpaceAround
         ) {
-            Text(text = "MIN", color = Color.Companion.White, fontSize = 12.sp)
-            Text(text = "MAX", color = Color.Companion.White, fontSize = 12.sp)
+            Text(text = "Min.", color = Color.Companion.White, fontSize = 12.sp)
+            Text(text = "Max.", color = Color.Companion.White, fontSize = 12.sp)
         }
         Row(
             modifier

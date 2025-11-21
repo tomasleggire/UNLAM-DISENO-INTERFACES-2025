@@ -2,11 +2,13 @@ package com.example.presionplus.ui.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -95,7 +97,11 @@ fun RecordatoryScreen(
                         modifier = Modifier
                             .clip(RoundedCornerShape(8.dp))
                             .background(Color(0xFFEE5A7C))
-                            .clickable { showModal = true }
+                            .clickable(
+                                interactionSource = remember { MutableInteractionSource() },
+                                indication = rememberRipple(bounded = false), 
+                                onClick = { showModal = true }
+                            )
                             .padding(horizontal = 10.dp, vertical = 8.dp)
                     ) {
                         Icon(
@@ -246,10 +252,14 @@ fun AddReminderModal(
                                     if (isSelected) Color(0xFFFF5D8A)
                                     else Color(0xFF0D1220)
                                 )
-                                .clickable {
-                                    selected =
-                                        if (isSelected) selected - key else selected + key
-                                },
+                                .clickable(
+                                    interactionSource = remember { MutableInteractionSource() },
+                                    indication = rememberRipple(bounded = false),
+                                    onClick = {
+                                        selected =
+                                            if (isSelected) selected - key else selected + key
+                                    }
+                                ),
                             contentAlignment = Alignment.Center
                         ) {
                             Text(
@@ -273,7 +283,11 @@ fun AddReminderModal(
                         modifier = Modifier
                             .clip(RoundedCornerShape(20.dp))
                             .background(Color(0xFF0D1220))
-                            .clickable { onCancel() }
+                            .clickable(
+                                interactionSource = remember { MutableInteractionSource() },
+                                indication = rememberRipple(bounded = false),
+                                onClick = { onCancel() }
+                            )
                             .padding(horizontal = 34.dp, vertical = 14.dp)
                     ) {
                         Text(
@@ -288,7 +302,11 @@ fun AddReminderModal(
                         modifier = Modifier
                             .clip(RoundedCornerShape(20.dp))
                             .background(Color(0xFFFF5D8A))
-                            .clickable { onSave() }
+                            .clickable(
+                                interactionSource = remember { MutableInteractionSource() },
+                                indication = rememberRipple(bounded = false),
+                                onClick = { onSave() }
+                            )
                             .padding(horizontal = 34.dp, vertical = 14.dp)
                     ) {
                         Text(
