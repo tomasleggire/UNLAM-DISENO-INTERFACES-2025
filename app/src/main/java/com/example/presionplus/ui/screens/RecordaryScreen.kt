@@ -43,6 +43,7 @@ fun RecordatoryScreen(
     Box(
         modifier = Modifier
             .fillMaxSize()
+            .padding(top = 10.dp)
             .background(Color(0xFF121727))
     ) {
 
@@ -67,7 +68,13 @@ fun RecordatoryScreen(
                     tint = Color.White,
                     modifier = Modifier
                         .size(28.dp)
-                        .clickable { controller.popBackStack() }
+                        .clickable(
+                            interactionSource = remember { MutableInteractionSource() },
+                            indication = rememberRipple(bounded = false),
+                            onClick = {
+                                controller.popBackStack()
+                            }
+                        )
                 )
 
                 Spacer(modifier = Modifier.width(16.dp))
